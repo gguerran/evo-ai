@@ -18,11 +18,11 @@ alembic-downgrade:
 
 # Command to run the server
 run:
-	uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload --env-file .env --reload-exclude frontend/ --reload-exclude "*.log" --reload-exclude "*.tmp"
+        cd src/evo_django_proj && python manage.py runserver 0.0.0.0:8000
 
 # Command to run the server in production mode
 run-prod:
-	uvicorn src.main:app --host 0.0.0.0 --port 8000 --workers 4
+        cd src/evo_django_proj && python manage.py runserver 0.0.0.0:8000 --insecure
 
 # Command to clean cache in all project folders
 clear-cache:

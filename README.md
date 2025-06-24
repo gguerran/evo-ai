@@ -67,12 +67,11 @@ Executes a specific task using a target agent with structured task instructions.
 ## 🛠️ Technologies
 
 ### Backend
-- **FastAPI**: Web framework for building the API
+- **Django & Django REST Framework**: Web framework for building the API
 - **SQLAlchemy**: ORM for database interaction
 - **PostgreSQL**: Main database
 - **Alembic**: Migration system
 - **Pydantic**: Data validation and serialization
-- **Uvicorn**: ASGI server
 - **Redis**: Cache and session management
 - **JWT**: Secure token authentication
 - **SendGrid/SMTP**: Email service for notifications (configurable)
@@ -168,6 +167,19 @@ make alembic-upgrade
 make seed-all
 ```
 
+#### Django App
+
+Um projeto Django básico está disponível em `src/evo_django_proj`.
+Para executá-lo:
+
+```bash
+cd src/evo_django_proj
+python manage.py migrate
+python manage.py runserver
+```
+
+O servidor estará disponível em `http://localhost:8000/`.
+
 ### 3. Frontend Setup
 
 #### Install Dependencies
@@ -206,8 +218,9 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 
 #### Start Backend (Terminal 1)
 ```bash
-# From project root
-make run
+# From Django project directory
+cd src/evo_django_proj
+python manage.py runserver
 # Backend will be available at http://localhost:8000
 ```
 
@@ -228,7 +241,8 @@ pnpm dev
 
 #### Backend
 ```bash
-make run-prod    # Production with multiple workers
+cd src/evo_django_proj
+python manage.py runserver 0.0.0.0:8000 --insecure
 ```
 
 #### Frontend
